@@ -36,9 +36,9 @@ app.config(function ($routeProvider) {
             templateUrl: 'views/main.html',
             controller: 'MainCtrl'
         })
-        .when('/about', {
-            templateUrl: 'views/about.html',
-            controller: 'AboutCtrl'
+        .when('/choose-repo', {
+          templateUrl: 'views/choose-repo.html',
+          controller: 'ChooseRepoCtrl'
         })
         .otherwise({
             redirectTo: '/'
