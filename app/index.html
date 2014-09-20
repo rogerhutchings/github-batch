@@ -23,19 +23,19 @@
         <div class="container">
             <div class="header">
                 <ul class="nav nav-pills pull-right">
-                    <li class="active"><a ng-href="#">Home</a></li>
-                    <li><a ng-href="#/about">About</a></li>
-                    <li><a ng-href="#">Contact</a></li>
+                    <li class="active"><a ng-href="/">Home</a></li>
+                    <li><a ng-href="/choose-repo">Choose Repo</a></li>
+                    <li>
+                        <oauth
+                            site="https://github.com/login"
+                            client-id="1ef3b7ef1581851dff8f"
+                            redirect-uri="http://localhost:9000"
+                            scope="repo">
+                        </oauth>
+                    </li>
                 </ul>
                 <h3 class="text-muted">githubBatch</h3>
             </div>
-
-            <oauth
-                site="https://github.com/login"
-                client-id="1ef3b7ef1581851dff8f"
-                redirect-uri="http://localhost:9000"
-                scope="repo">
-            </oauth>
 
             <div ng-view=""></div>
 
@@ -86,7 +86,6 @@
         <script src="bower_components/angular-touch/angular-touch.js"></script>
         <script src="bower_components/angular-route/angular-route.js"></script>
         <script src="bower_components/ngstorage/ngStorage.js"></script>
-        <script src="bower_components/oauth-ng/dist/oauth-ng.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
 
@@ -95,6 +94,8 @@
                 <script src="scripts/controllers/main.js"></script>
                 <script src="scripts/controllers/about.js"></script>
                 <script src="scripts/controllers/choose-repo.js"></script>
+                <script src="scripts/services/github.js"></script>
+                <script src="scripts/services/oauth.js"></script>
                 <!-- endbuild -->
 </body>
 </html>

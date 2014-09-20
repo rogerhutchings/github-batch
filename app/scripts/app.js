@@ -15,26 +15,17 @@ var app = angular.module('githubBatchApp', [
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch',
-    'oauth'
+    'ngTouch'
 ]);
 
-app.config(function ($routeProvider) {
+app.config(function ($routeProvider, $locationProvider) {
+    
+    $locationProvider.html5Mode(true);
     
     $routeProvider
-
-        .when('/access_token=:accessToken', {
-            template: '',
-            controller: function ($location, AccessToken) {
-                var hash = $location.path().substr(1);
-                AccessToken.setTokenFromString(hash);
-                $location.path('/');
-                $location.replace();
-            }
-        })
         .when('/', {
             templateUrl: 'views/main.html',
-            controller: 'MainCtrl'
+            controller: 'MainCtrl',
         })
         .when('/choose-repo', {
           templateUrl: 'views/choose-repo.html',

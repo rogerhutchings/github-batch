@@ -8,10 +8,12 @@
  * Controller of the githubBatchApp
  */
 angular.module('githubBatchApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+    .controller('MainCtrl', function ($scope, $routeParams, OAuth) {
+
+        OAuth.getCode();
+
+        if ($routeParams.code) {
+
+        }
+
+    });
