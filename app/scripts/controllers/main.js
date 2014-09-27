@@ -10,10 +10,9 @@
 angular.module('githubBatchApp')
     .controller('MainCtrl', function ($scope, $routeParams, OAuth) {
 
-        OAuth.getCode();
-
+        // TODO: replace with interceptor
         if ($routeParams.code) {
-
+            OAuth.requestToken($routeParams.code);
         }
-
+        
     });

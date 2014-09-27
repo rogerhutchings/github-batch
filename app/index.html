@@ -21,21 +21,8 @@
 
         <!-- Add your site or application content here -->
         <div class="container">
-            <div class="header">
-                <ul class="nav nav-pills pull-right">
-                    <li class="active"><a ng-href="/">Home</a></li>
-                    <li><a ng-href="/choose-repo">Choose Repo</a></li>
-                    <li>
-                        <oauth
-                            site="https://github.com/login"
-                            client-id="1ef3b7ef1581851dff8f"
-                            redirect-uri="http://localhost:9000"
-                            scope="repo">
-                        </oauth>
-                    </li>
-                </ul>
-                <h3 class="text-muted">githubBatch</h3>
-            </div>
+            
+            <div nav></div>
 
             <div ng-view=""></div>
 
@@ -96,6 +83,11 @@
                 <script src="scripts/controllers/choose-repo.js"></script>
                 <script src="scripts/services/github.js"></script>
                 <script src="scripts/services/oauth.js"></script>
+                <script src="scripts/directives/nav.js"></script>
+                <script src="scripts/services/config.js"></script>
+                <script src="scripts/controllers/create-issues.js"></script>
+                <script src="scripts/directives/new-issue.js"></script>
+                <script src="scripts/directives/new-issues.js"></script>
                 <!-- endbuild -->
 </body>
 </html>
