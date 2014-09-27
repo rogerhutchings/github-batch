@@ -1,3 +1,18 @@
-<p>This is the choose-repo view.</p>
+<div class="container">
+    <form class="form" role="form">
+        <div class="form-group">
+            <div class="col-sm-9">
+                <label for="choose-repo" class="control-label">Choose your repo:</label>
+            </div>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" name="choose-repo">
+            </div>
+        </div>
+    </form>
+</div>
 
-<div ng-click="login()">Login!</div>
+
+
+<ul>
+    <li ng-repeat="repo in repos">{{ repo.name }}</li>
+</ul>
