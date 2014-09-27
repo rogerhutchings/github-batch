@@ -8,9 +8,14 @@
  * Controller of the githubBatchApp
  */
 angular.module('githubBatchApp')
-    .controller('ChooseRepoCtrl', function ($scope) {
+    .controller('ChooseRepoCtrl', function ($scope, Github) {
         
-        $scope.login = function () {
-        };
+        // Get available repos, then put on the scope
+        // TODO: Add graceful failure
+        Github.getRepos()
+            .then(function (response) {
+                console.log(response);
+                $scope.repos = response.data;
+            });
 
     });
