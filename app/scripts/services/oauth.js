@@ -9,11 +9,22 @@
  */
 var app = angular.module('githubBatchApp');
 
-app.factory('OAuth', function ($http, $localStorage, $location, $rootScope, $route, $window, config) {
+app.factory('OAuth', [
+    '$http',
+    '$localStorage',
+    '$location',
+    '$q',
+    '$rootScope',
+    '$route',
+    '$window',
+    'config',
+    function ($http, $localStorage, $location, $q, $rootScope, $route, $window, config) {
 
     var credentials = config.credentials;
-    var token = $localStorage.token || 'blahblahblah';
-    var loggedIn = token !== null;
+    var token = $localStorage.token || null;
+    var loggedIn = {
+        value: token !== null
+    };
 
     // Sends you to Github for the first step of the dance
     var requestCode = function () {
@@ -32,36 +43,30 @@ app.factory('OAuth', function ($http, $localStorage, $location, $rootScope, $rou
     // save it to local storage
     var requestToken = function (code) {
 
-        var request = $http({
-            method: 'GET', 
-            url: config.gatekeeperUrl + code
-        });
+        console.log('Requesting... via', code);
 
-        // then save to local storage,  and redirect to repo select
-        request.success(function (data) {
-            if (data.token) {
-                $rootScope.$broadcast('OAuth/login');
-                $localStorage.token = token = data.token;
-                loggedIn = true;
-                $location.search('code', null).path('/choose-repo');
-            } else if (data.error === 'bad_code') {
-                $location.search('code', null).path('/error');
+        var request = $http.get(config.gatekeeperUrl + code);
+
+        request.then(function (response) {
+            if (response.data.token) {
+                console.log('Got', response.data.token);
+                $localStorage.token = response.data.token;
+                loggedIn.value = true;
+            } else {
+                console.log(response);
             }
-        });
-
-        // or redirect to error page
-        request.error(function () {
-            $location.path('/error');
+        }).then(function () {
+            $rootScope.$broadcast('OAuth/login');
         });
 
     };
 
     // Delete the access token from local storage
     var deleteToken = function () {
-        $rootScope.$broadcast('OAuth/logout');
         delete $localStorage.token;
         token = null;
-        $location.path('/');
+        loggedIn.value = false;
+        $location.path('/');        
     };
 
     return {
@@ -72,4 +77,4 @@ app.factory('OAuth', function ($http, $localStorage, $location, $rootScope, $rou
         loggedIn: loggedIn
     };
 
-});
+}]);

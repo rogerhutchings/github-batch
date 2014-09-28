@@ -21,7 +21,7 @@ var app = angular.module('githubBatchApp', [
 
 app.config(function ($routeProvider, $locationProvider) {
     
-    // $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode(true);
     
     $routeProvider
         .when('/choose-repo', {
@@ -35,6 +35,14 @@ app.config(function ($routeProvider, $locationProvider) {
         .when('/', {
             templateUrl: 'views/main.html',
             controller: 'MainCtrl',
+        })
+        .when('/login', {
+            template: null,
+            controller: 'LoginCtrl'
+        })
+        .when('/logout', {
+            template: null,
+            controller: 'LogoutCtrl'
         })
         .otherwise({
             redirectTo: '/'

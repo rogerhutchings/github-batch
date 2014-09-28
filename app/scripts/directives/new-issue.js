@@ -12,6 +12,19 @@ angular.module('githubBatchApp')
             templateUrl: 'views/directives/new-issue.html',
             restrict: 'A',
             link: function postLink(scope, element, attrs) {
+            
+                scope.issue = {};
+
+                scope.addIssue = function () {
+                    // TODO: Add issue to list
+                    // TODO: Close form
+                };
+
+                scope.cancelIssue = function () {
+                    // TODO: Close form
+                    scope.issue = {};
+                };
+
             }
         };
     });

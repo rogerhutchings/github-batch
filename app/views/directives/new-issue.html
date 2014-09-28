@@ -2,13 +2,13 @@
     <div class="form-group">
         <label for="title" class="col-sm-3 control-label">Title</label>
         <div class="col-sm-9">
-            <input type="text" class="form-control" name="title">
+            <input type="text" class="form-control" name="title" ng-model="issue.title">
         </div>
     </div>
     <div class="form-group">
         <label for="body" class="col-sm-3 control-label">Body</label>
         <div class="col-sm-9">
-            <textarea class="form-control" name="body" rows="3"></textarea>
+            <textarea class="form-control" name="body" rows="3" ng-model="issue.body"></textarea>
         </div>
     </div>
     <div class="form-group">
