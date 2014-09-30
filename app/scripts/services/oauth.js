@@ -13,12 +13,10 @@ app.factory('OAuth', [
     '$http',
     '$localStorage',
     '$location',
-    '$q',
-    '$rootScope',
     '$route',
     '$window',
     'config',
-    function ($http, $localStorage, $location, $q, $rootScope, $route, $window, config) {
+    function ($http, $localStorage, $location, $route, $window, config) {
 
     var credentials = config.credentials;
     var token = $localStorage.token || null;
@@ -50,13 +48,11 @@ app.factory('OAuth', [
         request.then(function (response) {
             if (response.data.token) {
                 console.log('Got', response.data.token);
-                $localStorage.token = response.data.token;
+                token = $localStorage.token = response.data.token;
                 loggedIn.value = true;
             } else {
                 console.log(response);
             }
-        }).then(function () {
-            $rootScope.$broadcast('OAuth/login');
         });
 
     };
