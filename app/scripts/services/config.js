@@ -14,7 +14,7 @@ angular.module('githubBatchApp')
         credentials: {
             client_id: '1ef3b7ef1581851dff8f',
             scope: 'repo',
-            redirect_uri: encodeURIComponent('http://localhost:9000/login/')
+            redirect_uri: encodeURIComponent('http://localhost:9000/')
         },
 
         // Url for Github temporary code request

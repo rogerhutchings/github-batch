@@ -50,6 +50,7 @@ app.factory('OAuth', [
                 console.log('Got', response.data.token);
                 token = $localStorage.token = response.data.token;
                 loggedIn.value = true;
+                $location.search('code', null).path('/choose-repo');
             } else {
                 console.log(response);
             }

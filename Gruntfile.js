@@ -1,6 +1,10 @@
 // Generated on 2014-09-19 using generator-angular 0.9.8
 'use strict';
 
+// Add rewriting module for connect to enable HTML5 mode
+// via http://stackoverflow.com/questions/24283653/angularjs-html5mode-using-grunt-connect-grunt-0-4-5
+var modRewrite = require('connect-modrewrite');
+
 // # Globbing
 // for performance reasons we're only matching one level down:
 // 'test/spec/{,*/}*.js'
@@ -76,6 +80,7 @@ module.exports = function (grunt) {
                     open: true,
                     middleware: function (connect) {
                         return [
+                            modRewrite(['^[^\\.]*$ /index.html [L]']),
                             connect.static('.tmp'),
                             connect().use(
                                 '/bower_components',

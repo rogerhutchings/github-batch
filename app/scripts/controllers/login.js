@@ -14,10 +14,6 @@ angular.module('githubBatchApp')
         '$routeParams',
         function ($scope, OAuth, $routeParams) {
 
-            if ($routeParams.code && !OAuth.token) {
-                OAuth.requestToken($routeParams.code);
-            } else {
-                OAuth.login();
-            }
+            OAuth.login();
 
         }]);
