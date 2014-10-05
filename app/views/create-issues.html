@@ -1,3 +1,32 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Body</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="issue in issues" ng-class="{active: hover}">
+            <td>
+                <div 
+                    editable-text="issues[$index].title">
+                    {{ issues[$index].title || 'empty' }}
+                </div>
+            </td>
+            <td>
+                <div 
+                    editable-textarea="issues[$index].body">
+                    <pre>{{ issues[$index].body || 'empty' }}</pre>
+                </div>
+            </td>
+            <td>
+                <span class="glyphicon glyphicon-remove-sign remove-issue" ng-click="removeIssue($index)"></span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
 <div class="btn-group">
-    <button class="btn btn-default">Create issue</button>
+    <button class="btn btn-default" ng-click="addIssue()">Add issue</button>
 </div>

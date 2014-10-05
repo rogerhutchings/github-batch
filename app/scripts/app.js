@@ -17,7 +17,8 @@ var app = angular.module('githubBatchApp', [
     'ngSanitize',
     'ngStorage',
     'ngTouch',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'xeditable'
 ]);
 
 app.config(function ($routeProvider, $locationProvider) {
@@ -49,4 +50,8 @@ app.config(function ($routeProvider, $locationProvider) {
             redirectTo: '/'
         });
 
+});
+
+app.run(function (editableOptions) {
+    editableOptions.theme = 'bs3';
 });
