@@ -24,7 +24,7 @@ angular.module('githubBatchApp')
 
         // TODO: validate form by checking that selected is an object
         $scope.submit = function () {
-            Github.currentRepo = angular.copy('selected');
+            Github.currentRepo = angular.copy($scope.selected);
             $location.path('/create-issues');
         };
 

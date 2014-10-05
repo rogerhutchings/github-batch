@@ -15,16 +15,13 @@ angular.module('githubBatchApp')
             $location.path('/choose-repo');
         }
 
+        console.log(Github.currentRepo);
+
         $scope.issues = [];
 
         $scope.addIssue = function (issue) {
             // $scope.issues.pop(issue);
             console.log('Add issue');
-        };
-
-        $scope.addIssues = function (issue) {
-            // $scope.issues.pop(issue);
-            console.log('Add issues');
         };
 
     });
