@@ -8,8 +8,13 @@
  * Controller of the githubBatchApp
  */
 angular.module('githubBatchApp')
-    .controller('CreateIssuesCtrl', function ($scope) {
+    .controller('CreateIssuesCtrl', function ($scope, $location, Github) {
         
+        // Redirect if we don't have a repo selected
+        if (_.isEmpty(Github.currentRepo)) {
+            $location.path('/choose-repo');
+        }
+
         $scope.issues = [];
 
         $scope.addIssue = function (issue) {

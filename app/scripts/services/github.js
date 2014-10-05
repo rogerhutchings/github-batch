@@ -10,6 +10,8 @@
 angular.module('githubBatchApp')
     .factory('Github', function ($http, OAuth) {
 
+        var currentRepo = false;
+
         // TODO: Replace with interceptor
         var appendToken = function (url) {
             return url + '?access_token=' + OAuth.token;
@@ -29,6 +31,8 @@ angular.module('githubBatchApp')
                 method: 'GET',
                 url: appendToken('https://api.github.com/user/repos'),
                 cache: true
+            }).then(function (response) {
+                return response.data;
             });
         };
 
@@ -44,6 +48,7 @@ angular.module('githubBatchApp')
         };
 
         return {
+            currentRepo: currentRepo,
             getRepos: getRepos,
             getUser: getUser,
             submitIssues: submitIssues

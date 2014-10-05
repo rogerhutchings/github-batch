@@ -8,14 +8,24 @@
  * Controller of the githubBatchApp
  */
 angular.module('githubBatchApp')
-    .controller('ChooseRepoCtrl', function ($scope, Github) {
+    .controller('ChooseRepoCtrl', function ($scope, $location, Github) {
         
         // Get available repos, then put on the scope
         // TODO: Add graceful failure
         Github.getRepos()
             .then(function (response) {
-                console.log(response);
-                $scope.repos = response.data;
+                $scope.repos = response;
+                $scope.getRepos = function (filter) {
+                    return _.filter($scope.repos, function (repo) {
+                        return repo.name.indexOf(filter);
+                    });
+                };
             });
+
+        // TODO: validate form by checking that selected is an object
+        $scope.submit = function () {
+            Github.currentRepo = angular.copy('selected');
+            $location.path('/create-issues');
+        };
 
     });

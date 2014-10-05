@@ -1,18 +1,17 @@
-<div class="container">
-    <form class="form" role="form">
-        <div class="form-group">
-            <div class="col-sm-9">
-                <label for="choose-repo" class="control-label">Choose your repo:</label>
-            </div>
-            <div class="col-sm-9">
-                <input type="text" class="form-control" name="choose-repo">
+<form role="form" ng-submit="submit()">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="input-group">
+                <input 
+                    type="text" 
+                    autocomplete="off" 
+                    ng-model="selected" 
+                    typeahead="repo as repo.name for repo in getRepos() | filter:{name:$viewValue}" 
+                    class="form-control">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">Choose Repo</button>
+                </span>
             </div>
         </div>
-    </form>
-</div>
-
-
-
-<ul>
-    <li ng-repeat="repo in repos">{{ repo.name }}</li>
-</ul>
+    </div>
+</form>

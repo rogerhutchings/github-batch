@@ -16,7 +16,8 @@ var app = angular.module('githubBatchApp', [
     'ngRoute',
     'ngSanitize',
     'ngStorage',
-    'ngTouch'
+    'ngTouch',
+    'ui.bootstrap'
 ]);
 
 app.config(function ($routeProvider, $locationProvider) {

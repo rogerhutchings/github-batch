@@ -12,7 +12,7 @@ angular.module('githubBatchApp')
                 templateUrl: 'views/directives/nav.html',
                 restrict: 'A',
                 replace: true,
-                controller: function ($scope, $rootScope, OAuth) {
+                controller: function ($scope, $rootScope, OAuth, Github) {
 
                     $scope.loggedIn = OAuth.loggedIn;
 
