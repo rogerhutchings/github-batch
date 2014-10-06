@@ -8,21 +8,21 @@
     </thead>
     <tbody>
         <tr ng-repeat="issue in issues" ng-class="{active: hover}">
-            <td>
+            <td class="title-field">
                 <div 
                     editable-text="issues[$index].title"
                     e-placeholder="Enter issue title..."
                     buttons="no"
                     onbeforesave="checkTitle($data)">
-                    {{ issues[$index].title || 'empty' }}
+                    <input type="disabled" class="form-control" value="{{ issues[$index].title || 'empty' }}">
                 </div>
             </td>
-            <td>
+            <td class="body-field">
                 <div 
                     editable-textarea="issues[$index].body"
                     e-placeholder="Enter issue body..."
                     buttons="no">
-                    <pre>{{ issues[$index].body || 'empty' }}</pre>
+                    <div class="body-container">{{ issues[$index].body || 'empty' }}</div>
                 </div>
             </td>
             <td>
