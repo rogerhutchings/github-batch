@@ -25,4 +25,10 @@ angular.module('githubBatchApp')
             $scope.issues.splice(index, 1);
         };
 
+        $scope.checkTitle = function (title) {
+            if (_.isUndefined(title)) {
+                return 'Issue title cannot be blank.';
+            }
+        };
+
     });
