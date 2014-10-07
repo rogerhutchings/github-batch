@@ -10,7 +10,7 @@
 angular.module('githubBatchApp')
     .factory('Github', function ($http, OAuth) {
 
-        var currentRepo = false;
+        var currentRepo = null;
 
         // TODO: Replace with interceptor
         var appendToken = function (url) {

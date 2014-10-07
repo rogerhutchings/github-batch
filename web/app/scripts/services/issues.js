@@ -10,30 +10,25 @@
 angular.module('githubBatchApp')
     .factory('Issues', function issues () {
 
-        var newIssues = [];
+        var issues = [];
 
-        var createIssue = function (issue) {
-            newIssues.push(issue);
+        var createIssue = function () {
+            issues.push({});
         };
 
         var deleteIssue = function (issue) {
-            
-        };
-
-        var updateIssue = function (issue) {
-
+            issues.splice(issue, 1);
         };
 
         var clearIssues = function () {
-            newIssues = [];
+            issues = [];
         };
 
         return {
-            issues: newIssues,
+            issues: issues,
             clearIssues: clearIssues,
             createIssue: createIssue,
             deleteIssue: deleteIssue,
-            updateIssue: updateIssue
         };
 
     });
