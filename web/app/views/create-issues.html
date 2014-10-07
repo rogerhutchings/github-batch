@@ -14,17 +14,17 @@
             <tr ng-repeat="issue in issues.issues">
                 <td class="title-field">
                     <div 
-                        editable-text="issues[$index].title"
+                        editable-text="issue.title"
                         e-placeholder="Enter issue title..."
                         buttons="no"
                         onbeforesave="checkTitle($data)"
                         blur="submit">
-                        <input type="disabled" class="form-control" value="{{ issues[$index].title || 'empty' }}">
+                        <input type="disabled" class="form-control" value="{{ issue.title || 'empty' }}">
                     </div>
                 </td>
                 <td class="body-field">
                     <div 
-                        editable-textarea="issues[$index].body"
+                        editable-textarea="issue.body"
                         e-placeholder="Enter issue body..."
                         buttons="no"
                         blur="submit">

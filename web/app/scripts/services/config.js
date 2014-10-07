@@ -13,7 +13,7 @@ angular.module('githubBatchApp')
         // Credentials for first step of the Github OAuth dance
         credentials: {
             client_id: '1ef3b7ef1581851dff8f',
-            scope: 'repo',
+            scope: 'user,repo',
             redirect_uri: encodeURIComponent('http://localhost:9000/')
         },
 

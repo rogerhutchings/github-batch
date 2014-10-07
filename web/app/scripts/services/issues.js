@@ -16,8 +16,8 @@ angular.module('githubBatchApp')
             issues.push({});
         };
 
-        var deleteIssue = function (issue) {
-            issues.splice(issue, 1);
+        var deleteIssue = function (issueIndex) {
+            issues.splice(issueIndex, 1);
         };
 
         var clearIssues = function () {

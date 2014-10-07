@@ -19,7 +19,6 @@ angular.module('githubBatchApp')
 
         $scope.addIssue = function () {
             $scope.issues.createIssue();
-            console.log($scope.issues);
         };
 
         $scope.deleteIssue = function (index) {
