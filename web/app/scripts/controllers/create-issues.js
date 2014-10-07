@@ -14,15 +14,16 @@ angular.module('githubBatchApp')
             $location.path('/')
         }
 
-        $scope.issues = Issues.issues;
+        $scope.github = Github;
+        $scope.issues = Issues;
 
         $scope.addIssue = function () {
-            Issues.createIssue();
+            $scope.issues.createIssue();
             console.log($scope.issues);
         };
 
         $scope.deleteIssue = function (index) {
-            Issues.deleteIssue(index);
+            $scope.issues.deleteIssue(index);
         };
 
         $scope.checkTitle = function (title) {

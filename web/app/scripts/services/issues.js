@@ -21,8 +21,12 @@ angular.module('githubBatchApp')
         };
 
         var clearIssues = function () {
-            console.log('Clearing issues...');
-            issues = [];
+            // Because we have references to this array, we can't simply create
+            // a new one, we have to empty it. According to 
+            // http://stackoverflow.com/a/1232046, this is the fastest way.
+            while (issues.length > 0) {
+                issues.pop();
+            }
         };
 
         return {

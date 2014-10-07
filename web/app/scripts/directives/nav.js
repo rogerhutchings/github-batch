@@ -15,20 +15,12 @@ angular.module('githubBatchApp')
                 controller: function ($scope, $rootScope, OAuth, Github, Issues) {
 
                     $scope.loggedIn = OAuth.loggedIn;
-                    $scope.currentRepo = Github.currentRepo;
-                    $scope.issues = Issues.issues;
+                    $scope.github = Github;
+                    $scope.issues = Issues;
 
                     Github.getRepos()
                         .then(function (response) {
                             $scope.repos = response;
-                            $scope.getRepos = function (filter) {
-                                return _.filter($scope.repos, function (repo) {
-                                    return repo.name.indexOf(filter);
-                                });
-                            };
-                        })
-                        .then(function () {
-                            console.log($scope.repos)
                         });
 
                     // // TODO: validate form by checking that selected is an object
@@ -37,17 +29,22 @@ angular.module('githubBatchApp')
                     //     $location.path('/create-issues');
                     // };
 
-                    $scope.clear = function () {
-                        $scope.currentRepo = '';
-                        console.log('clearing', $scope.currentRepo);
-                    };
+                    // $scope.repoSelect = function ($item, $model, $label) {
+                    //     console.log($model);
+                    // };
+
+                    // $scope.clear = function () {
+                    //     $scope.currentRepo = '';
+                    //     console.log('clearing', $scope.currentRepo);
+                    // };
 
                     $scope.submit = function () {
                         console.log('Submitting issues...');
-                        Github.submitIssues({
-                            repo: $scope.currentRepo.url,
-                            issues: $scope.issues
-                        });
+                        // Github.submitIssues({
+                        //     repo: $scope.currentRepo.url,
+                        //     issues: $scope.issues
+                        // });
+                        Issues.clearIssues();
                     };
 
                 }
