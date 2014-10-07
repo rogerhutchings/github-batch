@@ -21,6 +21,7 @@ angular.module('githubBatchApp')
         };
 
         var clearIssues = function () {
+            console.log('Clearing issues...');
             issues = [];
         };
 

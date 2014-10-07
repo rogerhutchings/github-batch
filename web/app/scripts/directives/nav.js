@@ -42,6 +42,14 @@ angular.module('githubBatchApp')
                         console.log('clearing', $scope.currentRepo);
                     };
 
+                    $scope.submit = function () {
+                        console.log('Submitting issues...');
+                        Github.submitIssues({
+                            repo: $scope.currentRepo.url,
+                            issues: $scope.issues
+                        });
+                    };
+
                 }
             };
         });

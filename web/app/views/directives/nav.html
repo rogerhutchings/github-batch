@@ -20,7 +20,11 @@
                             <button class="btn btn-default" ng-click="clear()">Clear</button>
                         </span>
                     </div>
-                    <button type="submit" class="btn btn-default" ng-class="{'btn-success': issues.length > 0}">
+                    <button 
+                        type="submit" 
+                        class="btn btn-default" 
+                        ng-class="{'btn-success': issues.length > 0}"
+                        ng-click="submit()">
                         <ng-pluralize 
                             count="issues.length"
                             when="{'0': 'No issues',
