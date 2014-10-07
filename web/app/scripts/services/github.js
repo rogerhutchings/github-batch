@@ -15,8 +15,6 @@ angular.module('githubBatchApp')
         'Issues',
         function ($http, $q, OAuth, Issues) {
 
-            var currentRepo = null;
-
             // TODO: Replace with interceptor
             var appendToken = function (url) {
                 return url + '?access_token=' + OAuth.token;
@@ -25,13 +23,13 @@ angular.module('githubBatchApp')
             var getRepos = function () {
 
                 // TODO: Get user repos
-                var orgs = $http({
-                    method: 'GET',
-                    url: appendToken('https://api.github.com/user/orgs'),
-                    cache: true
-                }).then(function (response) {
-                    console.log(response)
-                });
+                // var orgs = $http({
+                //     method: 'GET',
+                //     url: appendToken('https://api.github.com/user/orgs'),
+                //     cache: true
+                // }).then(function (response) {
+                //     console.log(response)
+                // });
 
                 // Replace with promise.all when getting org repos
                 return $http({
@@ -53,6 +51,8 @@ angular.module('githubBatchApp')
 
             var submitIssues = function (args) {
 
+                console.log(args)
+
                 var promises = [];
 
                 args.issues.forEach(function (issue) {
@@ -71,7 +71,6 @@ angular.module('githubBatchApp')
             };
 
             return {
-                currentRepo: currentRepo,
                 getRepos: getRepos,
                 getUser: getUser,
                 submitIssues: submitIssues

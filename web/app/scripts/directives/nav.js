@@ -42,7 +42,7 @@ angular.module('githubBatchApp')
                     $scope.submit = function () {
                         console.log('Submitting issues...');
                         Github.submitIssues({
-                            repo: Github.currentRepo.url,
+                            repo: Issues.repo.url,
                             issues: Issues.issues
                         }).then(function (response) {
                             console.log('Success', response);

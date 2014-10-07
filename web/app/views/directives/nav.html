@@ -13,7 +13,7 @@
                         <input 
                             type="text" 
                             autocomplete="off" 
-                            ng-model="github.currentRepo" 
+                            ng-model="issues.repo" 
                             typeahead="repo as repo.name for repo in repos | filter:{name:$viewValue}"
                             typeahead-on-select="repoSelect($item, $model, $label)"
                             class="form-control">

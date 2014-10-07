@@ -12,6 +12,8 @@ angular.module('githubBatchApp')
 
         var issues = [];
 
+        var repo = null;
+
         var createIssue = function () {
             issues.push({});
         };
@@ -30,6 +32,7 @@ angular.module('githubBatchApp')
         };
 
         return {
+            repo: repo,
             issues: issues,
             clearIssues: clearIssues,
             createIssue: createIssue,
