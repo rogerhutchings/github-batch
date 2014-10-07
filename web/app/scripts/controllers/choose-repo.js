@@ -8,8 +8,12 @@
  * Controller of the githubBatchApp
  */
 angular.module('githubBatchApp')
-    .controller('ChooseRepoCtrl', function ($scope, $location, Github) {
+    .controller('ChooseRepoCtrl', function ($scope, $location, Github, OAuth) {
         
+        if (!OAuth.token) {
+            $location.path('/')
+        }
+
         // Get available repos, then put on the scope
         // TODO: Add graceful failure
         Github.getRepos()

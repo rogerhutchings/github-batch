@@ -14,5 +14,6 @@ angular.module('githubBatchApp')
         'OAuth',
         function ($scope, $location, OAuth) {
             OAuth.logout();
+            $location.path('/');
         }
     ]);
