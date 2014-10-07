@@ -41,16 +41,13 @@ app.factory('OAuth', [
     // save it to local storage
     var requestToken = function (code) {
 
-        console.log('Requesting... via', code);
-
         var request = $http.get(config.gatekeeperUrl + code);
 
         request.then(function (response) {
             if (response.data.token) {
-                console.log('Got', response.data.token);
                 token = $localStorage.token = response.data.token;
                 loggedIn.value = true;
-                $location.search('code', null).path('/choose-repo');
+                $location.search('code', null).path('/create-issues');
             } else {
                 console.log(response);
             }

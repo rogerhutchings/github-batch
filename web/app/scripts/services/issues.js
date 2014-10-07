@@ -10,30 +10,33 @@
 angular.module('githubBatchApp')
     .factory('Issues', function issues () {
 
-        var newIssues = [];
+        var issues = [];
 
-        var createIssue = function (issue) {
-            newIssues.push(issue);
+        var repo = null;
+
+        var createIssue = function () {
+            issues.push({});
         };
 
-        var deleteIssue = function (issue) {
-            
-        };
-
-        var updateIssue = function (issue) {
-
+        var deleteIssue = function (issueIndex) {
+            issues.splice(issueIndex, 1);
         };
 
         var clearIssues = function () {
-            newIssues = [];
+            // Because we have references to this array, we can't simply create
+            // a new one, we have to empty it. According to 
+            // http://stackoverflow.com/a/1232046, this is the fastest way.
+            while (issues.length > 0) {
+                issues.pop();
+            }
         };
 
         return {
-            issues: newIssues,
+            repo: repo,
+            issues: issues,
             clearIssues: clearIssues,
             createIssue: createIssue,
             deleteIssue: deleteIssue,
-            updateIssue: updateIssue
         };
 
     });

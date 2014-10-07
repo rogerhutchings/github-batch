@@ -21,15 +21,12 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
+        <div nav></div>
+
+        <div ng-view="" class="container"></div>
+
         <div class="container">
-            
-            <div nav></div>
-
-            <div ng-view=""></div>
-
-            <div class="footer">
-                <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
-            </div>
+            <p class="footer"><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
         </div>
 
 
@@ -83,7 +80,6 @@
                 <!-- build:js({.tmp,app}) scripts/scripts.js -->
                 <script src="scripts/app.js"></script>
                 <script src="scripts/controllers/main.js"></script>
-                <script src="scripts/controllers/choose-repo.js"></script>
                 <script src="scripts/services/github.js"></script>
                 <script src="scripts/services/oauth.js"></script>
                 <script src="scripts/directives/nav.js"></script>
