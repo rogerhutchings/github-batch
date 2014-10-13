@@ -17,7 +17,7 @@ For the backend:
 - `cd gatekeeper && npm install`
 
 For the frontend:
-- `cd gatekeeper && npm install && bower install`
+- `cd web && npm install && bower install`
 
 ## Development
 
