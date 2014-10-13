@@ -13,15 +13,21 @@ Current version: 0.0.1 ((Changelog)[CHANGELOG.md])
 
 ## Installation
 
-For the backend: `cd gatekeeper && npm install`
+For the backend:
+- `cd gatekeeper && npm install`
 
-For the frontend: `cd gatekeeper && npm install && bower install`
+For the frontend:
+- `cd gatekeeper && npm install && bower install`
 
 ## Development
 
-For the backend: Run `node server.js` in the `gatekeeper` directory.
+For the backend: 
 
-For the frontend: Run `grunt serve` in the `web` directory.
+- Add your Github API ID and secret to the environment variables `OAUTH_CLIENT_ID` and `OAUTH_CLIENT_SECRET`
+- Run `node server.js` in the `gatekeeper` directory.
+
+For the frontend: 
+- Run `grunt serve` in the `web` directory.
 
 ## Credits
 
