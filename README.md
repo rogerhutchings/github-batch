@@ -2,9 +2,9 @@
 
 #### Because sometimes, you just need to create a whole bunch of issues.
 
-Github Batch provides a batch interface for creating issues for Github repos.
-
 Current version: 0.0.1 ([Changelog](CHANGELOG.md))
+
+Github Batch provides a batch interface for creating issues for Github repos. Currently, it can create issues singly; in the future, it will be able to create them by parsing textfiles, and from uploaded images.
 
 ## Requirements
 
