@@ -4,7 +4,7 @@
 
 Github Batch provides a batch interface for creating issues for Github repos.
 
-Current version: 0.0.1 ((Changelog)[CHANGELOG.md])
+Current version: 0.0.1 ([Changelog](CHANGELOG.md))
 
 ## Requirements
 
