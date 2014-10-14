@@ -21,6 +21,6 @@ angular.module('githubBatchApp')
         codeUrl: 'https://github.com/login/oauth/authorize?response_type=token',
 
         // Url for instance of Gatekeeper
-        gatekeeperUrl: 'http://localhost:9001/authenticate/'
+        gatekeeperUrl: 'http://localhost:8000/authenticate/'
 
     });
