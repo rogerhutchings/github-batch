@@ -11,8 +11,7 @@ angular.module('githubBatchApp')
     .controller('LoginCtrl', [
         '$scope',
         'OAuth',
-        '$routeParams',
-        function ($scope, OAuth, $routeParams) {
+        function ($scope, OAuth) {
 
             OAuth.login();
 
