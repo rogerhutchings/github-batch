@@ -2,17 +2,17 @@
 
 describe('Service: config', function () {
 
-  // load the service's module
-  beforeEach(module('githubBatchApp'));
+    // load the service's module
+    beforeEach(module('githubBatchApp'));
 
-  // instantiate service
-  var config;
-  beforeEach(inject(function (_config_) {
-    config = _config_;
-  }));
+    // instantiate service
+    var config;
+    beforeEach(inject(function (_config_) {
+        config = _config_;
+    }));
 
-  it('should do something', function () {
-    expect(!!config).toBe(true);
-  });
+    it('should do something', function () {
+        expect(!!config).toBe(true);
+    });
 
 });

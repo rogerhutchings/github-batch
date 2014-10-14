@@ -2,21 +2,28 @@
 
 describe('Controller: LoginCtrl', function () {
 
-  // load the controller's module
-  beforeEach(module('githubBatchApp'));
+    beforeEach(module('githubBatchApp'));
 
-  var LoginCtrl,
-    scope;
+    var LoginCtrl,
+        scope,
+        OAuth;
 
-  // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
-    scope = $rootScope.$new();
-    LoginCtrl = $controller('LoginCtrl', {
-      $scope: scope
+    beforeEach(inject(function ($controller, $rootScope) {
+        scope = $rootScope.$new();
+
+        OAuth = {
+            login: function () {}
+        };
+        spyOn(OAuth, 'login');
+
+        LoginCtrl = $controller('LoginCtrl', {
+            $scope: scope,
+            OAuth: OAuth
+        });
+    }));
+
+    it('should call OAuth.login', function () {
+        expect(OAuth.login).toHaveBeenCalled();
     });
-  }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(scope.awesomeThings.length).toBe(3);
-  });
 });

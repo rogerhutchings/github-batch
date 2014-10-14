@@ -2,21 +2,39 @@
 
 describe('Controller: LogoutCtrl', function () {
 
-  // load the controller's module
-  beforeEach(module('githubBatchApp'));
+    beforeEach(module('githubBatchApp'));
 
-  var LogoutCtrl,
-    scope;
+    var LogoutCtrl,
+        scope,
+        location,
+        OAuth;
 
-  // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
-    scope = $rootScope.$new();
-    LogoutCtrl = $controller('LogoutCtrl', {
-      $scope: scope
+    beforeEach(inject(function ($controller, $rootScope) {
+        scope = $rootScope.$new();
+
+        OAuth = {
+            logout: function () {}
+        };
+        spyOn(OAuth, 'logout');
+
+        location = { 
+            path: function () {}
+        };
+        spyOn(location, 'path');
+
+        LogoutCtrl = $controller('LogoutCtrl', {
+            $scope: scope,
+            $location: location,
+            OAuth: OAuth
+        });
+    }));
+
+    it('should call OAuth.logout', function () {
+        expect(OAuth.logout).toHaveBeenCalled();
     });
-  }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(scope.awesomeThings.length).toBe(3);
-  });
+    it('should redirect to the homepage after logging out', function () {
+        expect(location.path).toHaveBeenCalledWith('/');
+    });
+
 });
