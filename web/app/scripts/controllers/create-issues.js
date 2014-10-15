@@ -14,7 +14,7 @@ angular.module('githubBatchApp')
             $location.path('/')
         }
 
-        $scope.github = Github;
+        $scope.github = Github; // neccesary?
         $scope.issues = Issues;
 
         $scope.addIssue = function () {
