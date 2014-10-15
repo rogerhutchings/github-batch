@@ -3,11 +3,11 @@
 // Instantiating controllers in the tests, as per http://goo.gl/L4IwDZ
 describe('Controller: CreateIssuesCtrl', function () {
 
-    var controllerFactory, mockScope, mockLocation, mockOAuth, mockGithub, mockIssues;
+    var controllerFactory, scope, mockLocation, mockOAuth, mockGithub, mockIssues;
  
     var createController = function () {
         return controllerFactory('CreateIssuesCtrl', {
-            $scope: mockScope,
+            $scope: scope,
             OAuth: mockOAuth,
             $location: mockLocation,
             Github: mockGithub,
@@ -18,7 +18,7 @@ describe('Controller: CreateIssuesCtrl', function () {
     beforeEach(module('githubBatchApp'));
 
     beforeEach(inject(function ($controller, $rootScope) {
-        mockScope = $rootScope.$new();
+        scope = $rootScope.$new();
         controllerFactory = $controller;
     }));
 
@@ -47,14 +47,30 @@ describe('Controller: CreateIssuesCtrl', function () {
         expect(mockLocation.path).toHaveBeenCalledWith('/');
     });
 
-    // it('should have the Github service available as a scope object');
+    it('should have the Issues service available as a scope object', function () {
+        createController();
+        expect(scope.issues).toEqual(mockIssues);
+    });
 
-    it('should have the Issues service available as a scope object');
+    it('should have an addIssue scope method which calls the relevant Issue service method', function () {
+        createController();
+        scope.addIssue();
+        expect(mockIssues.createIssue).toHaveBeenCalled();
+    });
 
-    it('should have an addIssue scope method which calls the relevant Issue service method');
+    it('should have an deleteIssue scope method which calls the relevant Issue service method', function () {
+        createController();
+        scope.deleteIssue(5);
+        expect(mockIssues.deleteIssue).toHaveBeenCalledWith(5);
+    });
 
-    it('should have an deleteIssue scope method which calls the relevant Issue service method');
-
-    it('should have a checkTitle scope method to ensure titles aren\'t blank');
+    it('should have a checkTitle scope method to ensure titles aren\'t blank', function () {
+        createController();
+        var result;
+        result = scope.checkTitle();
+        expect(result).toBe('Issue title cannot be blank.');
+        result = scope.checkTitle('Title');
+        expect(result).toBe(true);
+    });
 
 });
