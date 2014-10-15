@@ -29,6 +29,7 @@ module.exports = function(config) {
             'bower_components/ngstorage/ngstorage.min.js',
             'bower_components/angular-bootstrap/ui-bootstrap.min.js',
             'bower_components/angular-xeditable/dist/js/xeditable.min.js',
+            'bower_components/lodash/dist/lodash.min.js',
 
             'app/scripts/**/*.js',
             'test/mock/**/*.js',
