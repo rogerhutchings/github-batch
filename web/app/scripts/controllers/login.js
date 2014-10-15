@@ -1,18 +1,22 @@
-'use strict';
+(function (angular) {
 
-/**
- * @ngdoc function
- * @name githubBatchApp.controller:LoginCtrl
- * @description
- * # LoginCtrl
- * Controller of the githubBatchApp
- */
-angular.module('githubBatchApp')
-    .controller('LoginCtrl', [
-        '$scope',
-        'OAuth',
-        function ($scope, OAuth) {
+    'use strict';
 
-            OAuth.login();
+    /**
+     * @ngdoc function
+     * @name githubBatchApp.controller:LoginCtrl
+     * @description
+     * # LoginCtrl
+     * Controller of the githubBatchApp
+     */
+    angular.module('githubBatchApp')
+        .controller('LoginCtrl', [
+            '$scope',
+            'OAuth',
+            function ($scope, OAuth) {
 
-        }]);
+                OAuth.login();
+
+            }]);
+
+})(window.angular);

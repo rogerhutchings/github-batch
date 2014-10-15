@@ -1,42 +1,46 @@
-'use strict';
+(function (angular) {
 
-/**
- * @ngdoc service
- * @name githubBatchApp.issues
- * @description
- * # issues
- * Service in the githubBatchApp.
- */
-angular.module('githubBatchApp')
-    .factory('Issues', function issues () {
+    'use strict';
 
-        var issues = [];
+    /**
+     * @ngdoc service
+     * @name githubBatchApp.issues
+     * @description
+     * # issues
+     * Service in the githubBatchApp.
+     */
+    angular.module('githubBatchApp')
+        .factory('Issues', function issues () {
 
-        var repo = null;
+            var issuesArray = [];
 
-        var createIssue = function () {
-            issues.push({});
-        };
+            var repo = null;
 
-        var deleteIssue = function (issueIndex) {
-            issues.splice(issueIndex, 1);
-        };
+            var createIssue = function () {
+                issues.push({});
+            };
 
-        var clearIssues = function () {
-            // Because we have references to this array, we can't simply create
-            // a new one, we have to empty it. According to 
-            // http://stackoverflow.com/a/1232046, this is the fastest way.
-            while (issues.length > 0) {
-                issues.pop();
-            }
-        };
+            var deleteIssue = function (issueIndex) {
+                issues.splice(issueIndex, 1);
+            };
 
-        return {
-            repo: repo,
-            issues: issues,
-            clearIssues: clearIssues,
-            createIssue: createIssue,
-            deleteIssue: deleteIssue,
-        };
+            var clearIssues = function () {
+                // Because we have references to this array, we can't simply create
+                // a new one, we have to empty it. According to 
+                // http://stackoverflow.com/a/1232046, this is the fastest way.
+                while (issues.length > 0) {
+                    issues.pop();
+                }
+            };
 
-    });
+            return {
+                repo: repo,
+                issues: issuesArray,
+                clearIssues: clearIssues,
+                createIssue: createIssue,
+                deleteIssue: deleteIssue,
+            };
+
+        });
+
+})(window.angular);

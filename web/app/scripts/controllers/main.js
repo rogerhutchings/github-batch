@@ -1,21 +1,25 @@
-'use strict';
+(function (angular) {
 
-/**
- * @ngdoc function
- * @name githubBatchApp.controller:MainCtrl
- * @description
- * # MainCtrl
- * Controller of the githubBatchApp
- */
-angular.module('githubBatchApp')
-    .controller('MainCtrl', function ($location, $scope, $routeParams, OAuth) {
+    'use strict';
 
-        if (OAuth.token) {
-            $location.path('/create-issues');
-        }
+    /**
+     * @ngdoc function
+     * @name githubBatchApp.controller:MainCtrl
+     * @description
+     * # MainCtrl
+     * Controller of the githubBatchApp
+     */
+    angular.module('githubBatchApp')
+        .controller('MainCtrl', function ($location, $scope, $routeParams, OAuth) {
 
-        if ($routeParams.code && !OAuth.token) {
-            OAuth.requestToken($routeParams.code);
-        }
+            if (OAuth.token) {
+                $location.path('/create-issues');
+            }
 
-    });
+            if ($routeParams.code && !OAuth.token) {
+                OAuth.requestToken($routeParams.code);
+            }
+
+        });
+
+})(window.angular);
