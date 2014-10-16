@@ -1,78 +1,79 @@
-'use strict';
+(function (angular) {
 
-/**
- * @ngdoc service
- * @name githubBatchApp.Github
- * @description
- * # Github
- * Factory in the githubBatchApp.
- */
-angular.module('githubBatchApp')
-    .factory('Github', [
-        '$http', 
-        '$q',
-        'OAuth', 
-        'Issues',
-        function ($http, $q, OAuth, Issues) {
+    'use strict';
 
-            // TODO: Replace with interceptor
-            var appendToken = function (url) {
-                return url + '?access_token=' + OAuth.token;
-            };
+    /**
+     * @ngdoc service
+     * @name githubBatchApp.Github
+     * @description
+     * # Github
+     * Factory in the githubBatchApp.
+     */
+    angular.module('githubBatchApp')
+        .factory('Github', [
+            '$http', 
+            '$q',
+            'OAuth', 
+            function ($http, $q, OAuth) {
 
-            var getRepos = function () {
+                // Append the OAuth token to the API url hit
+                // TODO: Replace with interceptor
+                var appendToken = function (url) {
+                    return url + '?access_token=' + OAuth.token;
+                };
 
-                // TODO: Get user repos
-                // var orgs = $http({
-                //     method: 'GET',
-                //     url: appendToken('https://api.github.com/user/orgs'),
-                //     cache: true
-                // }).then(function (response) {
-                //     console.log(response)
-                // });
+                // Return a promise containing a list of repos the user has 
+                // access to.
+                // TODO: Ensure that we also get org repos
+                var getRepos = function () {
 
-                // Replace with promise.all when getting org repos
-                return $http({
-                    method: 'GET',
-                    url: appendToken('https://api.github.com/user/repos'),
-                    cache: true
-                }).then(function (response) {
-                    return response.data;
-                });
-            };
+                    return $http({
+                        method: 'GET',
+                        url: appendToken('https://api.github.com/user/repos'),
+                        cache: true
+                    }).then(function (response) {
+                        return response.data;
+                    });
+                };
 
-            var getUser = function () {
-                return $http({
-                    method: 'GET',
-                    url: appendToken('https://api.github.com/user'),
-                    cache: true
-                });
-            };
+                // Return a promise with the user information
+                var getUser = function () {
+                    return $http({
+                        method: 'GET',
+                        url: appendToken('https://api.github.com/user'),
+                        cache: true
+                    });
+                };
 
-            var submitIssues = function (args) {
+                // Submit the issues to Github. Since issues can only be created
+                // singly, we create a whole bunch of promises and wait for them
+                // all to resolve.
+                var submitIssues = function (args) {
 
-                console.log(args)
+                    console.log(args);
 
-                var promises = [];
+                    var promises = [];
 
-                args.issues.forEach(function (issue) {
-                    promises.push($http({
-                        method: 'POST',
-                        url: appendToken(args.repo + '/issues'),
-                        data: {
-                            title: issue.title,
-                            body: issue.body
-                        }
-                    }));
-                });
+                    args.issues.forEach(function (issue) {
+                        promises.push($http({
+                            method: 'POST',
+                            url: appendToken(args.repo + '/issues'),
+                            data: {
+                                title: issue.title,
+                                body: issue.body
+                            }
+                        }));
+                    });
 
-                return $q.all(promises);
+                    return $q.all(promises);
 
-            };
+                };
 
-            return {
-                getRepos: getRepos,
-                getUser: getUser,
-                submitIssues: submitIssues
-            };
-        }]);
+                return {
+                    getRepos: getRepos,
+                    getUser: getUser,
+                    submitIssues: submitIssues
+                };
+            }]);
+
+})(window.angular);

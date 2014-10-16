@@ -1,13 +1,15 @@
-'use strict';
+(function (angular) {
 
-/**
- * @ngdoc directive
- * @name githubBatchApp.directive:nav
- * @description
- * # nav
- */
-angular.module('githubBatchApp')
-    .directive('nav', function () {
+    'use strict';
+
+    /**
+     * @ngdoc directive
+     * @name githubBatchApp.directive:nav
+     * @description
+     * # nav
+     */
+    angular.module('githubBatchApp')
+        .directive('nav', function () {
             return {
                 templateUrl: 'views/directives/nav.html',
                 restrict: 'A',
@@ -53,3 +55,5 @@ angular.module('githubBatchApp')
                 }
             };
         });
+
+})(window.angular);
