@@ -21,9 +21,7 @@
 
             var credentials = config.credentials;
             var token = $localStorage.token || null;
-            var loggedIn = {
-                value: token !== null
-            };
+            var loggedIn = token !== null;
 
             // Sends you to Github for the first step of the dance
             var requestCode = function () {
@@ -41,18 +39,15 @@
             // Exchange the temporary code Github provides for an access token, and
             // save it to local storage
             var requestToken = function (code) {
-
-                var request = $http.get(config.gatekeeperUrl + code);
-
-                request.then(function (response) {
-                    if (response.data.token) {
-                        token = $localStorage.token = response.data.token;
-                        loggedIn.value = true;
-                        $location.search('code', null).path('/create-issues');
-                    } else {
-                        console.log(response);
-                    }
-                });
+                return $http.get(config.gatekeeperUrl + code)
+                    .then(function (response) {
+                        if (response.data.token) {
+                            token = $localStorage.token = response.data.token;
+                            loggedIn = true;
+                        } else {
+                            console.log(response);
+                        }
+                    });
 
             };
 
@@ -60,7 +55,7 @@
             var deleteToken = function () {
                 delete $localStorage.token;
                 token = null;
-                loggedIn.value = false;
+                loggedIn = false;
                 $location.path('/');        
             };
 

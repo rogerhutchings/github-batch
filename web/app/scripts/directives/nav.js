@@ -16,14 +16,16 @@
                 replace: true,
                 controller: function ($scope, $rootScope, OAuth, Github, Issues) {
 
-                    $scope.loggedIn = OAuth.loggedIn;
+                    $scope.oauth = OAuth;
                     $scope.github = Github;
                     $scope.issues = Issues;
 
-                    Github.getRepos()
-                        .then(function (response) {
-                            $scope.repos = response;
-                        });
+                    if ($scope.oauth.loggedIn) {
+                        Github.getRepos()
+                            .then(function (response) {
+                                $scope.repos = response;
+                            });
+                    }
 
                     // // TODO: validate form by checking that selected is an object
                     // $scope.submit = function () {

@@ -6,7 +6,7 @@
             <a class="navbar-brand" ng-href="/#/">githubBatch</a>
         </div>
 
-        <div class="nav navbar-nav controls" ng-show="loggedIn.value">
+        <div class="nav navbar-nav controls" ng-show="oauth.loggedIn">
             <form class="navbar-form">
                 <div class="form-group">
                     <div class="input-group">
@@ -38,8 +38,8 @@
         </div>
 
         <ul class="nav navbar-nav navbar-right">
-            <li><a ng-href="/#/login" ng-show="!loggedIn.value">Log in</a></li>
-            <li><a ng-href="/#/logout" ng-show="loggedIn.value">Log out</a></li>
+            <li><a ng-href="/#/login" ng-show="!oauth.loggedIn">Log in</a></li>
+            <li><a ng-href="/#/logout" ng-show="oauth.loggedIn">Log out</a></li>
         </ul>
 
     </div>
