@@ -17,19 +17,19 @@
             var repo = null;
 
             var createIssue = function () {
-                issues.push({});
+                issuesArray.push({});
             };
 
             var deleteIssue = function (issueIndex) {
-                issues.splice(issueIndex, 1);
+                issuesArray.splice(issueIndex, 1);
             };
 
             var clearIssues = function () {
                 // Because we have references to this array, we can't simply create
                 // a new one, we have to empty it. According to 
                 // http://stackoverflow.com/a/1232046, this is the fastest way.
-                while (issues.length > 0) {
-                    issues.pop();
+                while (issuesArray.length > 0) {
+                    issuesArray.pop();
                 }
             };
 
