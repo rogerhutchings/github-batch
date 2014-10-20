@@ -1,4 +1,4 @@
-(function (angular) {
+(function (angular, _) {
 
     'use strict';
 
@@ -16,10 +16,14 @@
             'OAuth', 
             function ($http, $q, OAuth) {
 
-                // Append the OAuth token to the API url hit
-                // TODO: Replace with interceptor
-                var appendToken = function (url) {
-                    return url + '?access_token=' + OAuth.token;
+                var _endpoint = function (url) {
+                    return 'https://api.github.com' + url;
+                };
+
+                var _defaults = {
+                    headers: {
+                        Authorization: 'token ' + OAuth.token
+                    }
                 };
 
                 // Return a promise containing a list of repos the user has 
@@ -27,22 +31,22 @@
                 // TODO: Ensure that we also get org repos
                 var getRepos = function () {
 
-                    return $http({
+                    return $http(_.extend(_defaults, {
                         method: 'GET',
-                        url: appendToken('https://api.github.com/user/repos'),
+                        url: _endpoint('/user/repos'),
                         cache: true
-                    }).then(function (response) {
+                    })).then(function (response) {
                         return response.data;
                     });
                 };
 
                 // Return a promise with the user information
                 var getUser = function () {
-                    return $http({
+                    return $http(_.extend(_defaults, {
                         method: 'GET',
-                        url: appendToken('https://api.github.com/user'),
+                        url: _endpoint('/user'),
                         cache: true
-                    });
+                    }));
                 };
 
                 // Submit the issues to Github. Since issues can only be created
@@ -50,19 +54,17 @@
                 // all to resolve.
                 var submitIssues = function (args) {
 
-                    console.log(args);
-
                     var promises = [];
 
                     args.issues.forEach(function (issue) {
-                        promises.push($http({
+                        promises.push($http(_.extend(_defaults, {
                             method: 'POST',
-                            url: appendToken(args.repo + '/issues'),
+                            url: args.repo + '/issues',
                             data: {
                                 title: issue.title,
                                 body: issue.body
                             }
-                        }));
+                        })));
                     });
 
                     return $q.all(promises);
@@ -76,4 +78,4 @@
                 };
             }]);
 
-})(window.angular);
+})(window.angular, window._);
